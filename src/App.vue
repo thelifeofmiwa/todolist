@@ -1,0 +1,30 @@
+<template>
+  <div class="app">
+    <TaskAdd />
+    <TaskList :tasks="tasks" />
+  </div>
+</template>
+
+<script setup>
+import TaskList from "./components/TaskList.vue";
+import TaskAdd from "./components/TaskAdd.vue";
+
+const tasks = [
+  { id: 1, text: "Сходить в тренажёрный зал", isDone: false },
+  { id: 2, text: "Купить продукты", isDone: true },
+];
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>
