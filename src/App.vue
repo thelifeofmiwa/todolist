@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <h1>Список задач</h1>
     <TaskAdd @add-task="addNewTask" />
     <TaskList :tasks="tasks" />
   </div>

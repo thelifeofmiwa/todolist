@@ -1,9 +1,11 @@
 <template>
-  <div class="add_task">
-    <h3>Добавить новую задачу</h3>
-    <Input :placeholder="'Введите текст задачи'" v-model="newTaskText" />
-    <Button button-text="Добавить" @click="addNewTask" />
-  </div>
+  <form @submit.prevent class="add_task">
+    <h3 class="header">Добавить новую задачу</h3>
+    <div class="body">
+      <Input :placeholder="'Введите текст задачи'" v-model="newTaskText" />
+      <Button button-text="Добавить" @click="addNewTask" />
+    </div>
+  </form>
 </template>
 
 <script setup>
@@ -15,7 +17,7 @@ const newTaskText = ref("");
 
 const emit = defineEmits(["add-task"]);
 
-const addNewTask = () => {
+const addNewTask = (e) => {
   const newTask = {
     id: Date.now(),
     text: newTaskText.value,
@@ -33,5 +35,16 @@ const addNewTask = () => {
   padding: 15px;
   border: 1px solid darkslategray;
   border-radius: 10px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
