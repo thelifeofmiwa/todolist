@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <TaskAdd />
+    <TaskAdd @add-task="addNewTask" />
     <TaskList :tasks="tasks" />
   </div>
 </template>
@@ -8,11 +8,16 @@
 <script setup>
 import TaskList from "./components/TaskList.vue";
 import TaskAdd from "./components/TaskAdd.vue";
+import { ref } from "vue";
 
-const tasks = [
+const tasks = ref([
   { id: 1, text: "Сходить в тренажёрный зал", isDone: false },
   { id: 2, text: "Купить продукты", isDone: true },
-];
+]);
+
+const addNewTask = (newTask) => {
+  tasks.value.push(newTask);
+};
 </script>
 
 <style>

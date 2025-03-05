@@ -1,5 +1,10 @@
 <template>
-  <input type="text" :placeholder="props.placeholder" />
+  <input
+    type="text"
+    :placeholder="props.placeholder"
+    :value="modelValue"
+    @input="onInput"
+  />
 </template>
 
 <script setup>
@@ -8,7 +13,17 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  modelValue: {
+    type: String,
+    required: true,
+  },
 });
+
+const emit = defineEmits(["update:modelValue"]);
+
+const onInput = (event) => {
+  emit("update:modelValue", event.target.value);
+};
 </script>
 
 <style scoped>
