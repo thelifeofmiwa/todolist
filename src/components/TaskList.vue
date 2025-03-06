@@ -5,14 +5,19 @@
     v-model="selectedOption"
     @update-sort-option="updateSortOption"
   />
-  <div class="task_list" v-for="(task, index) in sortedTasks" :key="task.id">
-    <TaskCard
-      :task="task"
-      :index="index"
-      @delete-task="deleteTask"
-      @update-task-text="updateTaskText"
-      @update-task-status="updateTaskStatus"
-    ></TaskCard>
+  <div v-if="sortedTasks.length">
+    <div class="task_list" v-for="(task, index) in sortedTasks" :key="task.id">
+      <TaskCard
+        :task="task"
+        :index="index"
+        @delete-task="deleteTask"
+        @update-task-text="updateTaskText"
+        @update-task-status="updateTaskStatus"
+      ></TaskCard>
+    </div>
+  </div>
+  <div v-else class="list_empty">
+    <h1>Список пока пуст...</h1>
   </div>
 </template>
 
@@ -67,5 +72,9 @@ const updateTaskStatus = (updatedTask) => {
 <style>
 .task_list {
   display: flex;
+}
+.list_empty {
+  margin-top: 15px;
+  color: red;
 }
 </style>

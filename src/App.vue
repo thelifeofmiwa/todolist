@@ -13,12 +13,22 @@
 <script setup>
 import TaskList from "./components/TaskList.vue";
 import TaskAdd from "./components/TaskAdd.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const tasks = ref([
-  { id: 1, text: "Сходить в тренажёрный зал", isDone: true },
-  { id: 2, text: "Купить продукты", isDone: false },
-]);
+const loadTasks = () => {
+  const savedTasks = localStorage.getItem("tasks");
+  return savedTasks ? JSON.parse(savedTasks) : [];
+};
+
+const tasks = ref(loadTasks());
+
+watch(
+  tasks,
+  (newTasks) => {
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+  },
+  { deep: true },
+);
 
 const addNewTask = (newTask) => {
   tasks.value.push(newTask);
