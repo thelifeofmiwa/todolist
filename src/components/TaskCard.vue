@@ -6,7 +6,7 @@
         <Button button-text="Редактировать" @click="changeEditingState" />
         <Button button-text="Удалить" @click="deleteTask" />
       </div>
-      <Checkbox :is-checked="props.task.isDone" />
+      <Checkbox :is-checked="props.task.isDone" @change="updateTaskStatus" />
     </div>
     <div class="task_edit" v-if="isEditingTaskText === true">
       <div>Редактирование задачи</div>
@@ -28,6 +28,7 @@ const props = defineProps({
 });
 
 const taskText = ref("");
+const taskStatus = ref(false);
 const isEditingTaskText = ref(false);
 
 const changeEditingState = () => {
@@ -53,7 +54,17 @@ const updateTaskText = () => {
   isEditingTaskText.value = false;
 };
 
+const updateTaskStatus = () => {
+  taskStatus.value = !taskStatus.value;
+  const updatedTask = {
+    ...props.task,
+    isDone: taskStatus.value,
+  };
+  emit("update-task-status", updatedTask);
+};
+
 taskText.value = props.task.text;
+taskStatus.value = props.task.isDone;
 </script>
 
 <style>

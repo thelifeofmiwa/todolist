@@ -6,6 +6,7 @@
       :tasks="tasks"
       @delete-task="deleteTask"
       @update-task-text="updateTaskText"
+      @update-task-status="updateTaskStatus"
     />
   </div>
 </template>
@@ -16,8 +17,8 @@ import TaskAdd from "./components/TaskAdd.vue";
 import { ref } from "vue";
 
 const tasks = ref([
-  { id: 1, text: "Сходить в тренажёрный зал", isDone: false },
-  { id: 2, text: "Купить продукты", isDone: true },
+  { id: 1, text: "Сходить в тренажёрный зал", isDone: true },
+  { id: 2, text: "Купить продукты", isDone: false },
 ]);
 
 const addNewTask = (newTask) => {
@@ -31,6 +32,12 @@ const deleteTask = (deletedTask) => {
 const updateTaskText = (updatedTask) => {
   tasks.value = tasks.value.map((task) =>
     task.id === updatedTask.id ? { ...task, text: updatedTask.text } : task,
+  );
+};
+
+const updateTaskStatus = (updatedTask) => {
+  tasks.value = tasks.value.map((task) =>
+    task.id === updatedTask.id ? { ...task, isDone: updatedTask.isDone } : task,
   );
 };
 </script>

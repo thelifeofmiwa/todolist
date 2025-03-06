@@ -5,6 +5,7 @@
       :index="index"
       @delete-task="deleteTask"
       @update-task-text="updateTaskText"
+      @update-task-status="updateTaskStatus"
     ></TaskCard>
   </div>
 </template>
@@ -16,13 +17,22 @@ const props = defineProps({
   tasks: Array,
 });
 
-const emit = defineEmits(["delete-task", "update-task-text"]);
+const emit = defineEmits([
+  "delete-task",
+  "update-task-text",
+  "update-task-status",
+]);
 
 const deleteTask = (deletedTask) => {
   emit("delete-task", deletedTask);
 };
+
 const updateTaskText = (updatedTask) => {
   emit("update-task-text", updatedTask);
+};
+
+const updateTaskStatus = (updatedTask) => {
+  emit("update-task-status", updatedTask);
 };
 </script>
 
