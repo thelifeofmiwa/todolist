@@ -6,6 +6,7 @@
         <Button button-text="Редактировать" @click="changeEditingState" />
         <Button button-text="Удалить" @click="deleteTask" />
       </div>
+      <Checkbox :is-checked="props.task.isDone" />
     </div>
     <div class="task_edit" v-if="isEditingTaskText === true">
       <div>Редактирование задачи</div>
@@ -19,6 +20,7 @@
 import Button from "./UI/Button.vue";
 import Textarea from "./UI/Textarea.vue";
 import { ref } from "vue";
+import Checkbox from "./UI/Checkbox.vue";
 
 const props = defineProps({
   task: Object,
