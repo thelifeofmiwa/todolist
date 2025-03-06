@@ -2,7 +2,11 @@
   <div class="app">
     <h1>Список задач</h1>
     <TaskAdd @add-task="addNewTask" />
-    <TaskList :tasks="tasks" @delete-task="deleteTask" />
+    <TaskList
+      :tasks="tasks"
+      @delete-task="deleteTask"
+      @update-task-text="updateTaskText"
+    />
   </div>
 </template>
 
@@ -22,6 +26,12 @@ const addNewTask = (newTask) => {
 
 const deleteTask = (deletedTask) => {
   tasks.value = tasks.value.filter((task) => task.id !== deletedTask.id);
+};
+
+const updateTaskText = (updatedTask) => {
+  tasks.value = tasks.value.map((task) =>
+    task.id === updatedTask.id ? { ...task, text: updatedTask.text } : task,
+  );
 };
 </script>
 

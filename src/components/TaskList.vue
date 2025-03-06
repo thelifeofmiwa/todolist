@@ -1,6 +1,11 @@
 <template>
   <div class="task_list" v-for="(task, index) in props.tasks" :key="task.id">
-    <TaskCard :task="task" :index="index" @delete-task="deleteTask"></TaskCard>
+    <TaskCard
+      :task="task"
+      :index="index"
+      @delete-task="deleteTask"
+      @update-task-text="updateTaskText"
+    ></TaskCard>
   </div>
 </template>
 
@@ -11,11 +16,13 @@ const props = defineProps({
   tasks: Array,
 });
 
-const emit = defineEmits(["delete-task"]);
+const emit = defineEmits(["delete-task", "update-task-text"]);
 
 const deleteTask = (deletedTask) => {
   emit("delete-task", deletedTask);
-  console.log("deletedTask", deletedTask);
+};
+const updateTaskText = (updatedTask) => {
+  emit("update-task-text", updatedTask);
 };
 </script>
 
