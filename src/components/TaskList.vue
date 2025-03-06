@@ -45,7 +45,7 @@ const sortedTasks = computed(() => {
   } else if (selectedOption.value === "undone") {
     return props.tasks.filter((task) => !task.isDone);
   }
-  return props.tasks; // Если "all" — возвращаем все задачи
+  return props.tasks;
 });
 
 const props = defineProps({
