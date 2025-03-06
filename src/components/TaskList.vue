@@ -74,15 +74,43 @@ const updateTaskStatus = (updatedTask) => {
 <style>
 .task_list {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
 }
+
 .list_empty {
   margin-top: 15px;
   color: red;
 }
+
 .select {
   display: flex;
-  width: 800px;
   justify-content: flex-end;
   margin: 15px;
+  width: 100%;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .select {
+    width: 90%;
+    justify-content: center;
+  }
+
+  .task_list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list_empty h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .list_empty h1 {
+    font-size: 1.2rem;
+  }
 }
 </style>

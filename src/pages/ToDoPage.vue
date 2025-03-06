@@ -40,12 +40,42 @@ const {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 .to_do_page_head {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.to_do_page_head h1 {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .to_do_page_head {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .to_do_page_head h1 {
+    font-size: 1.5rem;
+  }
+
+  .to_do_page_head button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .to_do_page_head h1 {
+    font-size: 1.2rem;
+  }
 }
 </style>

@@ -34,7 +34,8 @@ const addNewTask = () => {
 
 <style scoped>
 .add_task {
-  width: 800px;
+  width: 100%;
+  max-width: 800px; /* Ограничиваем ширину на больших экранах */
   margin: 15px;
   padding: 15px;
   border: 1px solid darkslategray;
@@ -55,13 +56,58 @@ const addNewTask = () => {
 }
 
 .task_input {
-  width: 100%;
-  margin-top: 5px; /* Чтобы текстовое поле не сливалось с заголовком */
+  width: auto;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 1rem;
 }
 
 .body {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   width: 100%;
+}
+
+.task_button {
+  width: auto;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .add_task {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+
+  .task_input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task_button {
+    width: auto;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 14px;
+  }
+
+  .task_input {
+    font-size: 0.8rem;
+  }
 }
 </style>

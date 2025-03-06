@@ -83,7 +83,8 @@ taskStatus.value = props.task.isDone;
 
 <style scoped>
 .task_card {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   margin: 15px;
   padding: 15px;
   border: 1px solid darkslategray;
@@ -136,5 +137,59 @@ taskStatus.value = props.task.isDone;
   justify-content: flex-end;
   width: 100%;
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .task_card {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .task_text {
+    font-size: 14px;
+  }
+
+  .task_btns {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .task_input {
+    font-size: 14px;
+  }
+
+  .edit_btns {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .task_card {
+    margin: 8px;
+    padding: 8px;
+  }
+
+  .task_text {
+    font-size: 12px;
+  }
+
+  .task_input {
+    font-size: 13px;
+  }
+
+  .task_btns {
+    gap: 5px;
+  }
+
+  .edit_btns {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1080px) {
+  .task_card {
+    width: 100%;
+    min-width: 800px;
+  }
 }
 </style>
