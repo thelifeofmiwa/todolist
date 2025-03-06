@@ -61,12 +61,16 @@ const deleteTask = () => {
 };
 
 const updateTaskText = () => {
-  const updatedTask = {
-    ...props.task,
-    text: taskText.value,
-  };
-  emit("update-task-text", updatedTask);
-  isEditingTaskText.value = false;
+  if (taskText.value) {
+    const updatedTask = {
+      ...props.task,
+      text: taskText.value,
+    };
+    emit("update-task-text", updatedTask);
+    isEditingTaskText.value = false;
+  } else {
+    alert("Задача не может быть пустой!");
+  }
 };
 
 const updateTaskStatus = () => {

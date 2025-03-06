@@ -1,6 +1,6 @@
 <template>
   <select @change="updateSortOption">
-    <option disabled>Какие задачи нужны?</option>
+    <option disabled>Какие задачи показать?</option>
     <option
       v-for="option in props.options"
       :key="option.value"

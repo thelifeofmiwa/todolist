@@ -23,14 +23,18 @@ const newTaskText = ref("");
 const emit = defineEmits(["add-task"]); // Событие из дочернего компонента для обновления спика задач
 
 const addNewTask = () => {
-  const newTask = {
-    //создаём новую задачу
-    id: Date.now(),
-    text: newTaskText.value,
-    isDone: false,
-  };
-  emit("add-task", newTask); // Передаём новую задачу в родительский компонент
-  newTaskText.value = ""; // Обнуляем текстовое поле новой задачи
+  if (newTaskText.value) {
+    const newTask = {
+      //создаём новую задачу
+      id: Date.now(),
+      text: newTaskText.value,
+      isDone: false,
+    };
+    emit("add-task", newTask); // Передаём новую задачу в родительский компонент
+    newTaskText.value = ""; // Обнуляем текстовое поле новой задачи
+  } else {
+    alert("Задача не может быть пустой!");
+  }
 };
 </script>
 
