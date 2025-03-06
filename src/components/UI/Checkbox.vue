@@ -10,4 +10,10 @@ const props = defineProps({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+input {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+</style>
