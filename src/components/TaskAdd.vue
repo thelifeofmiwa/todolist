@@ -1,4 +1,5 @@
 <template>
+  <!-- Форма добавления новой задачи  -->
   <form @submit.prevent class="add_task">
     <h3 class="header">Добавить новую задачу</h3>
     <div class="body">

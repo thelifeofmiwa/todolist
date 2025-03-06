@@ -1,4 +1,5 @@
 <template>
+  <!--  Основная страница приложения  -->
   <div class="to_do_page">
     <div class="to_do_page_head">
       <h1>Список задач</h1>
@@ -31,7 +32,7 @@ const {
   deleteTask,
   updateTaskText,
   updateTaskStatus,
-} = useToDo();
+} = useToDo(); // деструктуризируем данные и методы из composable-функции useToDo
 </script>
 
 <style scoped>

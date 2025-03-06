@@ -1,4 +1,5 @@
 <template>
+  <!-- Компонент карточки задачи  -->
   <div class="task_card">
     <div class="task_view" v-if="!isEditingTaskText">
       <div class="task_content">
@@ -33,8 +34,8 @@
 <script setup>
 import Button from "./UI/Button.vue";
 import Textarea from "./UI/Textarea.vue";
-import { ref } from "vue";
 import Checkbox from "./UI/Checkbox.vue";
+import { ref } from "vue";
 
 const props = defineProps({
   task: Object,

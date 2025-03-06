@@ -1,4 +1,5 @@
 <template>
+  <!-- Компонент списка задач  -->
   <div class="select">
     <Select
       :options="sortOptions"
