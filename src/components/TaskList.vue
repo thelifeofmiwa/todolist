@@ -1,9 +1,12 @@
 <template>
-  <Select
-    :options="sortOptions"
-    v-model="selectedOption"
-    @update-sort-option="updateSortOption"
-  />
+  <div class="select">
+    <Select
+      :options="sortOptions"
+      v-model="selectedOption"
+      @update-sort-option="updateSortOption"
+    />
+  </div>
+
   <div v-if="sortedTasks.length">
     <div class="task_list" v-for="(task, index) in sortedTasks" :key="task.id">
       <TaskCard
@@ -75,5 +78,11 @@ const updateTaskStatus = (updatedTask) => {
 .list_empty {
   margin-top: 15px;
   color: red;
+}
+.select {
+  display: flex;
+  width: 800px;
+  justify-content: flex-end;
+  margin: 15px;
 }
 </style>

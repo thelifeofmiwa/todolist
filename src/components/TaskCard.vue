@@ -1,14 +1,18 @@
 <template>
   <div class="task_card">
-    <div class="task_view" v-if="isEditingTaskText === false">
-      <div class="task_text">{{ props.index + 1 }}. {{ props.task.text }}</div>
+    <div class="task_view" v-if="!isEditingTaskText">
+      <div class="task_content">
+        <div class="task_text">
+          {{ props.index + 1 }}. {{ props.task.text }}
+        </div>
+        <Checkbox :is-checked="props.task.isDone" @change="updateTaskStatus" />
+      </div>
       <div class="task_btns">
         <Button button-text="Редактировать" @click="changeEditingState" />
         <Button button-text="Удалить" @click="deleteTask" />
       </div>
-      <Checkbox :is-checked="props.task.isDone" @change="updateTaskStatus" />
     </div>
-    <div class="task_edit" v-if="isEditingTaskText === true">
+    <div class="task_edit" v-else>
       <div>Редактирование задачи</div>
       <Textarea placeholder="Впишите текст задачи" v-model="taskText" />
       <Button button-text="Сохранить" @click="updateTaskText" />
@@ -67,12 +71,34 @@ taskText.value = props.task.text;
 taskStatus.value = props.task.isDone;
 </script>
 
-<style>
+<style scoped>
 .task_card {
   width: 800px;
   margin: 15px;
   padding: 15px;
   border: 1px solid darkslategray;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task_view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.task_text {
+  margin-bottom: 8px;
+}
+
+.task_btns {
+  display: flex;
+  gap: 10px;
 }
 </style>
