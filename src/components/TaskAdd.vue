@@ -20,23 +20,24 @@ import { ref } from "vue";
 
 const newTaskText = ref("");
 
-const emit = defineEmits(["add-task"]);
+const emit = defineEmits(["add-task"]); // Событие из дочернего компонента для обновления спика задач
 
 const addNewTask = () => {
   const newTask = {
+    //создаём новую задачу
     id: Date.now(),
     text: newTaskText.value,
     isDone: false,
   };
-  emit("add-task", newTask);
-  newTaskText.value = "";
+  emit("add-task", newTask); // Передаём новую задачу в родительский компонент
+  newTaskText.value = ""; // Обнуляем текстовое поле новой задачи
 };
 </script>
 
 <style scoped>
 .add_task {
   width: 100%;
-  max-width: 800px; /* Ограничиваем ширину на больших экранах */
+  max-width: 800px;
   margin: 15px;
   padding: 15px;
   border: 1px solid darkslategray;

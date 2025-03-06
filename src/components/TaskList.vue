@@ -29,28 +29,30 @@ import TaskCard from "./TaskCard.vue";
 import Select from "./UI/Select.vue";
 import { computed, ref } from "vue";
 
+const props = defineProps({
+  tasks: Array,
+});
+
 const sortOptions = [
+  // Опции для фильтрации задач
   { value: "all", name: "Все задачи" },
   { value: "done", name: "Сделанные" },
   { value: "undone", name: "Несделанные" },
 ];
-const selectedOption = ref("all");
+const selectedOption = ref("all"); // Изначально отображаем все задачи
 
 const updateSortOption = (option) => {
   selectedOption.value = option;
 };
 
 const sortedTasks = computed(() => {
+  //Отсортированные задачи
   if (selectedOption.value === "done") {
     return props.tasks.filter((task) => task.isDone);
   } else if (selectedOption.value === "undone") {
     return props.tasks.filter((task) => !task.isDone);
   }
   return props.tasks;
-});
-
-const props = defineProps({
-  tasks: Array,
 });
 
 const emit = defineEmits([

@@ -2,6 +2,7 @@ import { ref, watch } from "vue";
 
 export const useToDo = () => {
   const loadTasks = () => {
+    // Подгружаем задачи из localStorage и заполняем ими массив
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
   };
@@ -10,6 +11,7 @@ export const useToDo = () => {
   const dialogVisible = ref(false);
 
   watch(
+    // Watch-ер для перезаписи данных в localStorage при изменении
     tasks,
     (newTasks) => {
       localStorage.setItem("tasks", JSON.stringify(newTasks));

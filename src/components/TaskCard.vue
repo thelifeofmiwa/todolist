@@ -78,8 +78,8 @@ const updateTaskStatus = () => {
   emit("update-task-status", updatedTask);
 };
 
-taskText.value = props.task.text;
-taskStatus.value = props.task.isDone;
+taskText.value = props.task.text; // Передаём в модель текст задачи
+taskStatus.value = props.task.isDone; // Передаём в модель статус задачи
 </script>
 
 <style scoped>
