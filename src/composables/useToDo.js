@@ -17,7 +17,7 @@ export const useToDo = () => {
     { deep: true },
   );
 
-  const showDialog = () => {
+  const showAddTaskForm = () => {
     dialogVisible.value
       ? (dialogVisible.value = false)
       : (dialogVisible.value = true);
@@ -49,7 +49,7 @@ export const useToDo = () => {
   return {
     tasks,
     dialogVisible,
-    showDialog,
+    showAddTaskForm,
     addNewTask,
     deleteTask,
     updateTaskText,

@@ -26,7 +26,7 @@ const onInput = (event) => {
 </script>
 
 <style scoped>
-input {
+textarea {
   margin: 0 10px;
   padding: 10px;
   border: 1px solid darkslategray;

@@ -4,7 +4,7 @@
       <h1>Список задач</h1>
       <Button
         :button-text="dialogVisible ? 'Отменить' : 'Добавить'"
-        @click="showDialog"
+        @click="showAddTaskForm"
       />
     </div>
     <TaskAdd v-if="dialogVisible" @add-task="addNewTask" />
@@ -26,7 +26,7 @@ import { useToDo } from "../composables/useToDo.js";
 const {
   tasks,
   dialogVisible,
-  showDialog,
+  showAddTaskForm,
   addNewTask,
   deleteTask,
   updateTaskText,

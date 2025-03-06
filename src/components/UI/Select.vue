@@ -23,4 +23,11 @@ const updateSortOption = (event) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+select {
+  border: 1px solid darkslategray;
+  border-radius: 5px;
+  margin: 5px;
+  height: 30px;
+}
+</style>
