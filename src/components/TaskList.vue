@@ -1,5 +1,4 @@
 <template>
-  <h1>Список задач</h1>
   <Select
     :options="sortOptions"
     v-model="selectedOption"

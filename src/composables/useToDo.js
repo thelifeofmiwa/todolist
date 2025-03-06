@@ -7,6 +7,7 @@ export const useToDo = () => {
   };
 
   const tasks = ref(loadTasks());
+  const dialogVisible = ref(false);
 
   watch(
     tasks,
@@ -16,8 +17,13 @@ export const useToDo = () => {
     { deep: true },
   );
 
+  const showDialog = () => {
+    dialogVisible.value = true;
+  };
+
   const addNewTask = (newTask) => {
     tasks.value.push(newTask);
+    dialogVisible.value = false;
   };
 
   const deleteTask = (deletedTask) => {
@@ -40,6 +46,8 @@ export const useToDo = () => {
 
   return {
     tasks,
+    dialogVisible,
+    showDialog,
     addNewTask,
     deleteTask,
     updateTaskText,
