@@ -3,8 +3,7 @@
     <div class="to_do_page_head">
       <h1>Список задач</h1>
       <Button
-        v-if="!dialogVisible"
-        button-text="Добавить задачу"
+        :button-text="dialogVisible ? 'Отменить' : 'Добавить'"
         @click="showDialog"
       />
     </div>

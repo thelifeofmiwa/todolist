@@ -18,7 +18,9 @@ export const useToDo = () => {
   );
 
   const showDialog = () => {
-    dialogVisible.value = true;
+    dialogVisible.value
+      ? (dialogVisible.value = false)
+      : (dialogVisible.value = true);
   };
 
   const addNewTask = (newTask) => {
