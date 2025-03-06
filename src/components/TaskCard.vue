@@ -12,10 +12,20 @@
         <Button button-text="Удалить" @click="deleteTask" />
       </div>
     </div>
+
     <div class="task_edit" v-else>
-      <div>Редактирование задачи</div>
-      <Textarea placeholder="Впишите текст задачи" v-model="taskText" />
-      <Button button-text="Сохранить" @click="updateTaskText" />
+      <label class="task_edit_label">
+        Редактирование задачи
+        <Textarea
+          class="task_input"
+          placeholder="Впишите текст задачи"
+          v-model="taskText"
+          style="margin-top: 10px"
+        />
+      </label>
+      <div class="edit_btns">
+        <Button button-text="Сохранить" @click="updateTaskText" />
+      </div>
     </div>
   </div>
 </template>
@@ -100,5 +110,31 @@ taskStatus.value = props.task.isDone;
 .task_btns {
   display: flex;
   gap: 10px;
+}
+
+.task_edit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.task_edit_label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
+}
+
+.task_input {
+  width: 100%;
+  margin: 0;
+}
+
+.edit_btns {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 10px;
 }
 </style>
