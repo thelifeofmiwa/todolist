@@ -10,14 +10,14 @@
 
 <script setup>
 import Button from "./UI/Button.vue";
-import Input from "./UI/Input.vue";
+import Input from "./UI/Textarea.vue";
 import { ref } from "vue";
 
 const newTaskText = ref("");
 
 const emit = defineEmits(["add-task"]);
 
-const addNewTask = (e) => {
+const addNewTask = () => {
   const newTask = {
     id: Date.now(),
     text: newTaskText.value,

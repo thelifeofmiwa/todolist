@@ -2,7 +2,7 @@
   <div class="app">
     <h1>Список задач</h1>
     <TaskAdd @add-task="addNewTask" />
-    <TaskList :tasks="tasks" />
+    <TaskList :tasks="tasks" @delete-task="deleteTask" />
   </div>
 </template>
 
@@ -18,6 +18,10 @@ const tasks = ref([
 
 const addNewTask = (newTask) => {
   tasks.value.push(newTask);
+};
+
+const deleteTask = (deletedTask) => {
+  tasks.value = tasks.value.filter((task) => task.id !== deletedTask.id);
 };
 </script>
 

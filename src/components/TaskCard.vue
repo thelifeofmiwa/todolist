@@ -2,17 +2,25 @@
   <div class="task_card">
     <div class="task_text">{{ props.index + 1 }}. {{ props.task.text }}</div>
     <div class="task_btns">
-      <button>Редактировать</button>
-      <button>Удалить</button>
+      <Button button-text="Редактировать" />
+      <Button button-text="Удалить" @click="deleteTask" />
     </div>
   </div>
 </template>
 
 <script setup>
+import Button from "./UI/Button.vue";
+
 const props = defineProps({
   task: Object,
   index: Number,
 });
+
+const emit = defineEmits(["delete-task"]);
+
+const deleteTask = () => {
+  emit("delete-task", props.task);
+};
 </script>
 
 <style>
