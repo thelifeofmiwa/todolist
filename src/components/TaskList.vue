@@ -9,7 +9,7 @@
   </div>
 
   <div v-if="sortedTasks.length">
-    <div class="task_list" v-for="(task, index) in sortedTasks" :key="task.id">
+    <div class="task-list" v-for="(task, index) in sortedTasks" :key="task.id">
       <TaskCard
         :task="task"
         :index="index"
@@ -19,7 +19,7 @@
       ></TaskCard>
     </div>
   </div>
-  <div v-else class="list_empty">
+  <div v-else class="list-empty">
     <h1>Список пока пуст...</h1>
   </div>
 </template>
@@ -48,9 +48,9 @@ const updateSortOption = (option) => {
 const sortedTasks = computed(() => {
   //Отсортированные задачи
   if (selectedOption.value === "done") {
-    return props.tasks.filter((task) => task.isDone);
+    return props.tasks.filter((task) => task.completed);
   } else if (selectedOption.value === "undone") {
-    return props.tasks.filter((task) => !task.isDone);
+    return props.tasks.filter((task) => !task.completed);
   }
   return props.tasks;
 });
@@ -75,14 +75,14 @@ const updateTaskStatus = (updatedTask) => {
 </script>
 
 <style>
-.task_list {
+.task-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-start;
 }
 
-.list_empty {
+.list-empty {
   margin-top: 15px;
   color: red;
 }
@@ -101,18 +101,18 @@ const updateTaskStatus = (updatedTask) => {
     justify-content: center;
   }
 
-  .task_list {
+  .task-list {
     flex-direction: column;
     align-items: center;
   }
 
-  .list_empty h1 {
+  .list-empty h1 {
     font-size: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .list_empty h1 {
+  .list-empty h1 {
     font-size: 1.2rem;
   }
 }
