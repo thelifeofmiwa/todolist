@@ -1,30 +1,33 @@
 <template>
   <!-- Компонент карточки задачи  -->
-  <div class="task_card">
-    <div class="task_view" v-if="!isEditingTaskText">
-      <div class="task_content">
-        <div class="task_text">
-          {{ props.index + 1 }}. {{ props.task.text }}
+  <div class="task-card">
+    <div class="task-view" v-if="!isEditingTaskText">
+      <div class="task-content">
+        <div class="task-text">
+          {{ props.index + 1 }}. {{ props.task.title }}
         </div>
-        <Checkbox :is-checked="props.task.isDone" @change="updateTaskStatus" />
+        <Checkbox
+          :is-checked="props.task.completed"
+          @change="updateTaskStatus"
+        />
       </div>
-      <div class="task_btns">
+      <div class="task-btns">
         <Button button-text="Редактировать" @click="changeEditingState" />
         <Button button-text="Удалить" @click="deleteTask" />
       </div>
     </div>
 
-    <div class="task_edit" v-else>
-      <label class="task_edit_label">
+    <div class="task-edit" v-else>
+      <label class="task-edit-label">
         Редактирование задачи
         <Textarea
-          class="task_input"
+          class="task-input"
           placeholder="Впишите текст задачи"
           v-model="taskText"
           style="margin-top: 10px"
         />
       </label>
-      <div class="edit_btns">
+      <div class="edit-btns">
         <Button button-text="Сохранить" @click="updateTaskText" />
       </div>
     </div>
@@ -64,7 +67,7 @@ const updateTaskText = () => {
   if (taskText.value) {
     const updatedTask = {
       ...props.task,
-      text: taskText.value,
+      label: taskText.value,
     };
     emit("update-task-text", updatedTask);
     isEditingTaskText.value = false;
@@ -77,17 +80,17 @@ const updateTaskStatus = () => {
   taskStatus.value = !taskStatus.value;
   const updatedTask = {
     ...props.task,
-    isDone: taskStatus.value,
+    completed: taskStatus.value,
   };
   emit("update-task-status", updatedTask);
 };
 
-taskText.value = props.task.text; // Передаём в модель текст задачи
-taskStatus.value = props.task.isDone; // Передаём в модель статус задачи
+taskText.value = props.task.title; // Передаём в модель текст задачи
+taskStatus.value = props.task.completed; // Передаём в модель статус задачи
 </script>
 
 <style scoped>
-.task_card {
+.task-card {
   width: 100%;
   max-width: 800px;
   margin: 15px;
@@ -98,33 +101,33 @@ taskStatus.value = props.task.isDone; // Передаём в модель ста
   flex-direction: column;
 }
 
-.task_view {
+.task-view {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.task_content {
+.task-content {
   display: flex;
   flex-direction: column;
 }
 
-.task_text {
+.task-text {
   margin-bottom: 8px;
 }
 
-.task_btns {
+.task-btns {
   display: flex;
   gap: 10px;
 }
 
-.task_edit {
+.task-edit {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.task_edit_label {
+.task-edit-label {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
@@ -132,12 +135,12 @@ taskStatus.value = props.task.isDone; // Передаём в модель ста
   width: 100%;
 }
 
-.task_input {
+.task-input {
   width: 100%;
   margin: 0;
 }
 
-.edit_btns {
+.edit-btns {
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -145,54 +148,54 @@ taskStatus.value = props.task.isDone; // Передаём в модель ста
 }
 
 @media (max-width: 768px) {
-  .task_card {
+  .task-card {
     margin: 10px;
     padding: 10px;
   }
 
-  .task_text {
+  .task-text {
     font-size: 14px;
   }
 
-  .task_btns {
+  .task-btns {
     flex-direction: column;
     gap: 5px;
   }
 
-  .task_input {
+  .task-input {
     font-size: 14px;
   }
 
-  .edit_btns {
+  .edit-btns {
     justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .task_card {
+  .task-card {
     margin: 8px;
     padding: 8px;
   }
 
-  .task_text {
+  .task-text {
     font-size: 12px;
   }
 
-  .task_input {
+  .task-input {
     font-size: 13px;
   }
 
-  .task_btns {
+  .task-btns {
     gap: 5px;
   }
 
-  .edit_btns {
+  .edit-btns {
     justify-content: center;
   }
 }
 
 @media (min-width: 1080px) {
-  .task_card {
+  .task-card {
     width: 100%;
     min-width: 800px;
   }
