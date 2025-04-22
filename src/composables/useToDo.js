@@ -1,14 +1,27 @@
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 export const useToDo = () => {
-  const loadTasks = () => {
-    // Подгружаем задачи из localStorage и заполняем ими массив
-    const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  };
-
-  const tasks = ref(loadTasks());
+  const tasks = ref([]);
   const dialogVisible = ref(false);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos?_limit=10",
+      );
+      return await response.json();
+    } catch (error) {
+      console.error("Ошибка при загрузке задач:", error);
+    }
+  };
+  const loadTasks = async () => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      tasks.value = JSON.parse(savedTasks);
+    } else {
+      tasks.value = await fetchTasks();
+    }
+  };
 
   watch(
     // Watch-ер для перезаписи данных в localStorage при изменении
@@ -36,17 +49,21 @@ export const useToDo = () => {
 
   const updateTaskText = (updatedTask) => {
     tasks.value = tasks.value.map((task) =>
-      task.id === updatedTask.id ? { ...task, text: updatedTask.text } : task,
+      task.id === updatedTask.id ? { ...task, title: updatedTask.title } : task,
     );
   };
 
   const updateTaskStatus = (updatedTask) => {
     tasks.value = tasks.value.map((task) =>
       task.id === updatedTask.id
-        ? { ...task, isDone: updatedTask.isDone }
+        ? { ...task, completed: updatedTask.completed }
         : task,
     );
   };
+
+  onMounted(async () => {
+    await loadTasks();
+  });
 
   return {
     tasks,
