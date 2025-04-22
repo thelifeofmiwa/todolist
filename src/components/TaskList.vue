@@ -8,7 +8,7 @@
     />
   </div>
 
-  <div v-if="sortedTasks.length">
+  <div class="wrapper" v-if="sortedTasks.length">
     <div class="task-list" v-for="(task, index) in sortedTasks" :key="task.id">
       <TaskCard
         :task="task"
@@ -75,11 +75,18 @@ const updateTaskStatus = (updatedTask) => {
 </script>
 
 <style>
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .task-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: flex-start;
+  justify-content: center;
+  width: 100%;
 }
 
 .list-empty {
@@ -104,6 +111,7 @@ const updateTaskStatus = (updatedTask) => {
   .task-list {
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .list-empty h1 {
