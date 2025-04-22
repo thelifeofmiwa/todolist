@@ -1,14 +1,14 @@
 <template>
   <!-- Форма добавления новой задачи  -->
-  <form @submit.prevent class="add_task">
+  <form @submit.prevent class="add-task">
     <h3 class="header">Добавить новую задачу</h3>
     <div class="body">
       <Input
-        class="task_input"
+        class="task-input"
         placeholder="Введите текст задачи"
         v-model="newTaskText"
       />
-      <Button class="task_button" button-text="Добавить" @click="addNewTask" />
+      <Button class="task-button" button-text="Добавить" @click="addNewTask" />
     </div>
   </form>
 </template>
@@ -20,15 +20,15 @@ import { ref } from "vue";
 
 const newTaskText = ref("");
 
-const emit = defineEmits(["add-task"]); // Событие из дочернего компонента для обновления спика задач
+const emit = defineEmits(["add-task"]); // Событие из дочернего компонента для обновления списка задач
 
 const addNewTask = () => {
   if (newTaskText.value) {
     const newTask = {
       //создаём новую задачу
       id: Date.now(),
-      text: newTaskText.value,
-      isDone: false,
+      title: newTaskText.value,
+      completed: false,
     };
     emit("add-task", newTask); // Передаём новую задачу в родительский компонент
     newTaskText.value = ""; // Обнуляем текстовое поле новой задачи
@@ -39,7 +39,7 @@ const addNewTask = () => {
 </script>
 
 <style scoped>
-.add_task {
+.add-task {
   width: 100%;
   max-width: 800px;
   margin: 15px;
@@ -61,7 +61,7 @@ const addNewTask = () => {
   padding-left: 10px;
 }
 
-.task_input {
+.task-input {
   width: auto;
   margin-top: 5px;
   padding: 10px;
@@ -75,14 +75,14 @@ const addNewTask = () => {
   width: 100%;
 }
 
-.task_button {
+.task-button {
   width: auto;
   padding: 10px 20px;
   margin-top: 10px;
 }
 
 @media (max-width: 768px) {
-  .add_task {
+  .add-task {
     width: 90%;
     padding: 10px;
   }
@@ -91,7 +91,7 @@ const addNewTask = () => {
     font-size: 16px;
   }
 
-  .task_input {
+  .task-input {
     font-size: 0.9rem;
     padding: 8px;
   }
@@ -101,7 +101,7 @@ const addNewTask = () => {
     align-items: stretch;
   }
 
-  .task_button {
+  .task-button {
     width: auto;
     margin-top: 10px;
   }
@@ -112,7 +112,7 @@ const addNewTask = () => {
     font-size: 14px;
   }
 
-  .task_input {
+  .task-input {
     font-size: 0.8rem;
   }
 }
